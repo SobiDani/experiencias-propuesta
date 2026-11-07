@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Propuesta Experiencias</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Spline+Sans+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: documento interno a una columna con bloques visuales anchos (1120px); portada en banda de "mar profundo", navegación fija con la sección activa y roadmap filtrable por fase. */
+:root {
+  --bg: #F3F6F5;
+  --surface: #FFFFFF;
+  --ink: #10262E;
+  --muted: #56696E;
+  --line: #D3DDDC;
+  --sea: #0E6B73;
+  --sea-soft: #DCEDEC;
+  --sun: #C9820F;
+  --sun-soft: #FBEBCB;
+  --sun-ink: #8A5A06;
+  --hero-accent: #F0B548;
+  --phase1: #0E6B73;
+  --phase2: #2C5F66;
+  --deep: #0F343C;
+  --deep-fg: #EEF4F2;
+  --deep-muted: #A9C2C1;
+  --deep-line: #2A525A;
+  --f-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "Spline Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  --wide: 1120px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0B181C; --surface: #11242A; --ink: #E4EDEB; --muted: #93A8AA; --line: #23393F;
+    --sea: #5DB8BC; --sea-soft: #163A3E; --sun: #F0B548; --sun-soft: #3A2F17; --sun-ink: #F0B548; --hero-accent: #F0B548;
+    --deep: #08262C; --deep-fg: #EEF4F2; --deep-muted: #9DB8B7; --deep-line: #1F4249;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0B181C; --surface: #11242A; --ink: #E4EDEB; --muted: #93A8AA; --line: #23393F;
+  --sea: #5DB8BC; --sea-soft: #163A3E; --sun: #F0B548; --sun-soft: #3A2F17; --sun-ink: #F0B548; --hero-accent: #F0B548;
+  --deep: #08262C; --deep-fg: #EEF4F2; --deep-muted: #9DB8B7; --deep-line: #1F4249;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.62; margin: 0; }
+h1, h2, h3, h4 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.1; }
+h2 { font-size: clamp(28px, 4.2vw, 40px); font-weight: 800; font-stretch: 112%; letter-spacing: -0.01em; }
+h3 { font-size: 19px; font-weight: 700; font-stretch: 105%; }
+h4 { font-size: 16px; font-weight: 700; }
+p { margin: 0; }
+strong { font-weight: 600; }
+code { font-family: var(--f-mono); font-size: 0.86em; background: var(--sea-soft); padding: 1px 5px; border-radius: 3px; }
+.label { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+.muted { color: var(--muted); }
+.note { font-size: 14px; color: var(--muted); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--sun); outline-offset: 2px; }
+
+.wrap { max-width: calc(var(--wide) + 32px); margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.stack { display: flex; flex-direction: column; gap: 14px; }
+.text { max-width: 66ch; display: flex; flex-direction: column; gap: 12px; }
+.sub { font-family: var(--f-display); font-weight: 800; font-size: 20px; font-stretch: 108%; margin-top: 10px; }
+
+/* ---------- Portada ---------- */
+.hero { background: var(--deep); color: var(--deep-fg); position: relative; overflow: hidden; }
+.hero .wrap { padding-block: 36px 112px; display: flex; flex-direction: column; gap: 26px; position: relative; z-index: 1; }
+.hero-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid var(--deep-line); padding-bottom: 16px; }
+.wordmark { font-family: var(--f-display); font-weight: 900; font-stretch: 125%; font-size: 18px; letter-spacing: 0.04em; }
+.wordmark small { font-family: var(--f-mono); font-weight: 400; font-size: 11px; letter-spacing: 0.08em; color: var(--deep-muted); margin-left: 10px; text-transform: uppercase; }
+.hero-top .label { color: var(--deep-muted); }
+.hero h1 { font-size: clamp(40px, 8vw, 92px); font-weight: 900; font-stretch: 118%; letter-spacing: -0.02em; line-height: 0.98; max-width: 14ch; }
+.hero h1 span { display: block; }
+.hero h1 .soft { color: var(--hero-accent); font-weight: 800; }
+.lede { font-size: clamp(18px, 2.2vw, 21px); max-width: 58ch; }
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--deep-line); margin: 4px 0 0; }
+.facts div { padding: 16px 16px 0; border-right: 1px solid var(--deep-line); }
+.facts div:first-child { padding-left: 0; }
+.facts div:last-child { border-right: 0; }
+.facts dt { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--deep-muted); }
+.facts dd { margin: 4px 0 0; font-family: var(--f-display); font-weight: 700; font-size: 17px; line-height: 1.3; }
+.facts .hl dd { color: var(--hero-accent); }
+.hero-wave { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 100px; display: block; }
+.hero-wave .w1 { fill: var(--bg); }
+.hero-wave .w2 { fill: none; stroke: var(--deep-muted); stroke-width: 1.2; opacity: 0.45; }
+
+/* ---------- Navegación fija ---------- */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.nav ol { position: relative; list-style: none; margin: 0; padding: 7px 0; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); }
+.nav li { display: flex; justify-content: center; }
+.nav-pill { position: absolute; top: 0; left: 0; width: 0; height: 0; border-radius: 999px; background: var(--ink); opacity: 0; pointer-events: none; z-index: 0; transition: transform 0.5s cubic-bezier(.3,.8,.25,1), width 0.5s cubic-bezier(.3,.8,.25,1), opacity 0.3s; }
+.nav a { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 6px 12px; border-radius: 999px; font-family: var(--f-display); font-weight: 600; font-size: 13px; line-height: 1.3; color: var(--muted); text-decoration: none; white-space: nowrap; transition: color 0.3s, background 0.2s; }
+.nav a span { font-family: var(--f-mono); font-size: 11px; font-weight: 400; color: var(--sea); transition: color 0.3s; }
+.nav a:hover { color: var(--ink); background: var(--sea-soft); }
+.nav a.on, .nav a.on:hover { color: var(--bg); background: transparent; }
+.nav a.on span { color: var(--bg); }
+@media (prefers-reduced-motion: reduce) { .nav-pill { transition: opacity 0.2s; } }
+.nav-toggle { display: none; width: 100%; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; background: none; border: 0; color: var(--ink); font: 700 15px/1.3 var(--f-display); cursor: pointer; text-align: left; }
+.nav-toggle .cur { display: flex; gap: 8px; align-items: baseline; }
+.nav-toggle .cur span { font-family: var(--f-mono); font-size: 11px; font-weight: 400; color: var(--sea); }
+.nav-toggle i { font-style: normal; font-family: var(--f-mono); font-size: 12px; color: var(--muted); transition: transform 0.2s; }
+.nav.open .nav-toggle i { transform: rotate(180deg); }
+@media (max-width: 1080px) {
+  .nav-toggle { display: flex; }
+  .nav ol { display: none; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding-bottom: 14px; }
+  .nav.open ol { display: grid; }
+  .nav-pill { display: none; }
+  .nav li { display: block; }
+  .nav a { flex-direction: row; align-items: baseline; justify-content: flex-start; gap: 8px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); font-size: 14px; }
+  .nav a.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .nav a.on span { color: var(--bg); }
+}
+@media (max-width: 480px) { .nav ol { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* ---------- Secciones ---------- */
+.sec { padding-block: 60px 4px; }
+.sec-head { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 0 12px; align-items: baseline; margin-bottom: 26px; border-top: 2px solid var(--ink); padding-top: 18px; }
+.sec-head .num { font-family: var(--f-mono); font-size: 13px; color: var(--sea); }
+.sec-head .kicker { grid-column: 2; color: var(--muted); margin-top: 10px; font-size: 18px; max-width: 60ch; }
+.body { margin-left: 76px; display: flex; flex-direction: column; gap: 22px; }
+.callout { background: var(--sun-soft); padding: 20px 24px; border-radius: 2px; font-size: 18px; line-height: 1.5; max-width: 66ch; }
+.callout .label { color: var(--sun-ink); display: block; margin-bottom: 6px; }
+
+/* 01 · Comparativa */
+.compare { display: flex; flex-direction: column; gap: 14px; background: var(--surface); border: 1px solid var(--line); padding: 22px 24px; }
+.cmp-row, .scale { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 14px; align-items: center; }
+.cmp-row .who { font-family: var(--f-display); font-weight: 600; font-size: 15px; line-height: 1.3; }
+.bar-track { position: relative; height: 34px; background: var(--bg); }
+.bar { position: absolute; inset: 0 auto 0 0; background: var(--sea); display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; color: var(--surface); font-family: var(--f-mono); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; transform-origin: left; }
+.bar.high { background: var(--sun); color: #10262E; }
+.scale div { display: flex; justify-content: space-between; font-family: var(--f-mono); font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* 02 · Visión */
+.vision { background: var(--deep); color: var(--deep-fg); padding: 32px 30px; display: flex; flex-direction: column; gap: 14px; }
+.vision .label { color: var(--hero-accent); }
+.vision h3 { font-size: clamp(28px, 4.4vw, 48px); font-weight: 900; font-stretch: 118%; line-height: 1.02; letter-spacing: -0.01em; max-width: 18ch; }
+.vision p { color: var(--deep-muted); max-width: 62ch; }
+.acts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.act { background: var(--surface); border: 1px solid var(--line); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; transition: transform 0.2s, border-color 0.2s; }
+.act:hover { transform: translateY(-2px); border-color: var(--sea); }
+.act b { font-family: var(--f-display); font-size: 17px; font-weight: 800; font-stretch: 108%; }
+.act .ph { align-self: flex-start; font-family: var(--f-mono); font-size: 11px; padding: 2px 8px; border-radius: 999px; background: var(--sea-soft); color: var(--ink); }
+.act.now { background: var(--sun-soft); border-color: transparent; }
+.act.now .ph { background: var(--sun); color: #10262E; }
+.act.more { border-style: dashed; background: transparent; }
+.act span.d { font-size: 14px; color: var(--muted); line-height: 1.4; }
+.formats { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 8px; }
+.fmt { padding: 16px 18px; border: 1px solid var(--line); background: var(--surface); display: flex; flex-direction: column; gap: 4px; font-size: 15px; }
+.fmt.main { background: var(--sea); color: var(--surface); border-color: transparent; }
+.fmt.main .label { color: var(--surface); }
+.fmt .label { color: var(--muted); }
+.fmt b { font-family: var(--f-display); font-size: 20px; font-weight: 800; }
+.criteria { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.criteria > div { border-top: 2px solid var(--sun); padding-top: 12px; display: flex; flex-direction: column; gap: 4px; font-size: 15px; }
+
+/* 03 · Mapa */
+.split { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 36px; align-items: center; }
+.map { position: relative; aspect-ratio: 1 / 1; max-width: 100%; background: var(--surface); border: 1px solid var(--line); }
+.map::before, .map::after { content: ""; position: absolute; background: var(--line); }
+.map::before { left: 50%; top: 6%; bottom: 6%; width: 1px; }
+.map::after { top: 50%; left: 6%; right: 6%; height: 1px; }
+.ax { position: absolute; font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); line-height: 1.3; }
+.ax.top { top: 10px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+.ax.bottom { bottom: 10px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+.ax.left { left: 10px; top: 50%; transform: translateY(-140%); }
+.ax.right { right: 10px; top: 50%; transform: translateY(-140%); text-align: right; }
+.pt { position: absolute; display: flex; align-items: center; gap: 8px; transform: translate(-7px, -50%); max-width: 46%; }
+.pt i { flex: none; width: 14px; height: 14px; border-radius: 50%; background: var(--muted); border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--muted); }
+.pt span { font-family: var(--f-display); font-size: 12.5px; line-height: 1.3; font-weight: 600; }
+.pt.flip { flex-direction: row-reverse; transform: translate(calc(-100% + 7px), -50%); text-align: right; }
+.pt.us i { width: 20px; height: 20px; background: var(--sun); box-shadow: 0 0 0 4px color-mix(in srgb, var(--sun) 30%, transparent); }
+.pt.us span { font-size: 14px; font-weight: 800; }
+@media (prefers-reduced-motion: no-preference) {
+  .pt.us i { animation: pulse 2.4s ease-in-out infinite; }
+  @keyframes pulse { 50% { box-shadow: 0 0 0 9px color-mix(in srgb, var(--sun) 12%, transparent); } }
+}
+.legend-list { list-style: none; padding: 0; margin: 0; }
+.legend-list li { border-top: 1px solid var(--line); padding: 11px 0; display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 12px; font-size: 15px; }
+.legend-list li b { font-family: var(--f-display); font-weight: 700; font-size: 14px; }
+.legend-list li.us b { color: var(--sun-ink); }
+
+/* 04 · Propuesta y diferenciales */
+.value { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 14px; }
+.value .main { background: var(--deep); color: var(--deep-fg); padding: 28px; grid-row: span 2; display: flex; flex-direction: column; gap: 14px; justify-content: space-between; }
+.value .main .label { color: var(--hero-accent); }
+.value .main h3 { font-size: clamp(26px, 3.4vw, 36px); font-weight: 900; font-stretch: 115%; line-height: 1.05; }
+.value .main p { color: var(--deep-muted); }
+.value .main .tag { font-family: var(--f-display); font-weight: 600; border-top: 1px solid var(--deep-line); padding-top: 12px; }
+.value .side { background: var(--surface); border: 1px solid var(--line); padding: 20px 22px; display: flex; flex-direction: column; gap: 6px; }
+.value .side .label { color: var(--sea); }
+.diffs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.diffs > div { background: var(--surface); border: 1px solid var(--line); padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; font-size: 15px; transition: transform 0.2s, border-color 0.2s; }
+.diffs > div:hover { transform: translateY(-2px); border-color: var(--sea); }
+.diffs .star { background: var(--sea-soft); border-color: transparent; }
+.diffs .k { font-family: var(--f-mono); font-size: 11px; color: var(--sea); letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* 05 · Social */
+.principles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.principles > div { display: flex; flex-direction: column; gap: 6px; font-size: 15.5px; }
+.journey { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--line); background: var(--surface); }
+.journey > div { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 10px; }
+.journey > div + div { border-left: 1px solid var(--line); }
+.journey .stage { display: flex; align-items: center; gap: 10px; font-family: var(--f-display); font-weight: 800; font-size: 19px; font-stretch: 110%; }
+.journey .stage i { width: 10px; height: 10px; border-radius: 50%; background: var(--sea); }
+.journey ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 15.5px; }
+.journey li { padding-left: 16px; position: relative; }
+.journey li::before { content: ""; position: absolute; left: 0; top: 0.75em; width: 7px; height: 1px; background: var(--muted); }
+
+/* 06 · Producto */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-family: var(--f-display); font-size: 14px; font-weight: 600; padding: 6px 12px; border: 1px solid var(--sea); color: var(--sea); border-radius: 999px; }
+.chip.off { border-style: dashed; border-color: var(--line); color: var(--muted); font-weight: 500; }
+.spec { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.spec > div { padding: 14px 16px; display: flex; flex-direction: column; gap: 2px; }
+.spec > div:first-child { padding-left: 0; }
+.spec > div + div { border-left: 1px solid var(--line); }
+.spec .v { font-family: var(--f-display); font-size: 22px; font-weight: 800; font-stretch: 110%; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.spec .label { color: var(--muted); }
+.spec small { font-size: 13.5px; color: var(--muted); line-height: 1.4; }
+.tiers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; align-items: end; }
+.tier { background: var(--surface); border: 1px solid var(--line); padding: 14px 18px; display: flex; flex-direction: column; }
+.tier .price { font-family: var(--f-display); font-weight: 900; font-stretch: 112%; font-size: 30px; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.tier:nth-child(1) { min-height: 118px; }
+.tier:nth-child(2) { min-height: 108px; }
+.tier:nth-child(3) { min-height: 98px; background: var(--sea-soft); border-color: transparent; }
+.tier .label { color: var(--muted); }
+.season { border: 1px solid var(--line); background: var(--surface); padding: 18px 22px; display: flex; flex-direction: column; gap: 12px; }
+.months, .windows { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3px; }
+.months div { height: 40px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 6px; font-family: var(--f-mono); font-size: 11px; background: var(--bg); color: var(--muted); }
+.months .s { background: color-mix(in srgb, var(--sea) 30%, var(--surface)); color: var(--ink); }
+.months .h { background: var(--sea); color: var(--surface); }
+.months .w { background: var(--sun-soft); color: var(--ink); }
+.windows span { font-family: var(--f-display); font-size: 12px; font-weight: 600; line-height: 1.3; border-top: 2px solid var(--sea); padding-top: 6px; }
+.windows span.wi { border-color: var(--sun); color: var(--muted); font-weight: 500; }
+.key { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); }
+.key span { display: inline-flex; align-items: center; gap: 6px; }
+.key i { width: 12px; height: 12px; display: inline-block; }
+
+/* 07 · Proveedores, 12 · Marca */
+.engines { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.engines > div { border-top: 2px solid var(--sea); padding-top: 12px; display: flex; flex-direction: column; gap: 4px; font-size: 15px; }
+
+/* 08 · Negocio */
+.layers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: end; }
+.layer-col { display: flex; flex-direction: column; gap: 4px; }
+.layer-col .blocks { display: flex; flex-direction: column-reverse; gap: 4px; }
+.blk { padding: 10px 12px; font-family: var(--f-display); font-size: 13.5px; font-weight: 600; line-height: 1.3; }
+.blk.m { background: var(--sea); color: var(--surface); }
+.blk.c { background: color-mix(in srgb, var(--sea) 35%, var(--surface)); color: var(--ink); }
+.blk.x { background: var(--sea-soft); color: var(--ink); }
+.layer-col .foot { border-top: 2px solid var(--ink); padding-top: 8px; font-family: var(--f-display); font-weight: 700; font-size: 15px; }
+.unit { border: 1px solid var(--line); background: var(--surface); padding: 20px 24px; display: flex; flex-direction: column; gap: 14px; }
+.unit-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline; }
+.unit-head b { font-family: var(--f-display); font-size: 17px; }
+.stackbar { display: flex; height: 46px; width: 100%; }
+.stackbar div { display: flex; align-items: center; padding: 0 10px; font-family: var(--f-mono); font-size: 12.5px; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; }
+.sb1 { background: color-mix(in srgb, var(--muted) 35%, var(--surface)); color: var(--ink); }
+.sb2 { background: color-mix(in srgb, var(--muted) 18%, var(--surface)); color: var(--ink); }
+.sb3 { background: var(--sun); color: #10262E; font-weight: 500; }
+
+/* 09 · Tecnología */
+.entities { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0; }
+.ent { background: var(--surface); border: 1px solid var(--line); padding: 12px 14px; min-width: 0; flex: 1 1 140px; display: flex; flex-direction: column; gap: 6px; }
+.ent b { font-family: var(--f-display); font-size: 15px; font-weight: 800; }
+.ent ul { list-style: none; margin: 0; padding: 0; font-family: var(--f-mono); font-size: 12px; line-height: 1.5; color: var(--muted); }
+.ent ul li.k { color: var(--ink); }
+.ent.core { border-color: var(--sea); }
+.rel { flex: none; align-self: center; font-family: var(--f-mono); font-size: 11px; color: var(--sea); padding: 0 6px; display: flex; flex-direction: column; align-items: center; line-height: 1.2; }
+.rel::before { content: "→"; font-size: 16px; }
+.side-ents { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.side-ents .ent { border-style: dashed; }
+.flow { list-style: none; margin: 0; padding: 0; counter-reset: s; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.flow li { counter-increment: s; background: var(--surface); border: 1px solid var(--line); padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 4px; font-size: 14.5px; line-height: 1.45; }
+.flow li::before { content: "Paso " counter(s); font-family: var(--f-mono); font-size: 11px; color: var(--sea); letter-spacing: 0.06em; text-transform: uppercase; }
+.flow li b { font-family: var(--f-display); font-size: 15px; }
+.flow li.alt { border-style: dashed; }
+.flow li.alt::before { content: "Si caduca"; color: var(--sun-ink); }
+.tbl-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 640px; }
+th { text-align: left; font-family: var(--f-mono); font-size: 11.5px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; border-bottom: 2px solid var(--ink); }
+td { padding: 12px 14px 12px 0; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.5; }
+td:first-child { font-family: var(--f-display); font-weight: 700; white-space: nowrap; }
+.stackpick { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.stackpick > div { border: 1px solid var(--line); background: var(--surface); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; font-size: 14px; line-height: 1.45; }
+.stackpick .label { color: var(--muted); }
+.stackpick b { font-family: var(--f-display); font-size: 16px; }
+
+/* 10 · Roadmap */
+.rm-tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+.rm-tools .note { margin-right: 4px; }
+.ph-btn { font: 600 13px/1 var(--f-display); padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; transition: background 0.2s, border-color 0.2s; }
+.ph-btn:hover { border-color: var(--sea); }
+.ph-btn[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.rm-wrap { overflow-x: auto; border: 1px solid var(--line); background: var(--surface); }
+.rm { min-width: 980px; padding: 18px 18px 22px; }
+.rm-row { display: grid; grid-template-columns: 140px minmax(0, 1fr); }
+.track { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); grid-auto-flow: row dense; row-gap: 6px; }
+.phases .track > div { margin: 0 3px; padding: 10px 10px 12px; color: var(--deep-fg); display: flex; flex-direction: column; gap: 2px; }
+.phases .track > [data-ph="0"] { background: var(--deep); }
+.phases .track > [data-ph="1"] { background: var(--phase1); }
+.phases .track > [data-ph="2"] { background: var(--phase2); }
+.phases .track > [data-ph="3"] { background: var(--sun); color: #10262E; }
+.phases .label { font-size: 11px; }
+.phases b { font-family: var(--f-display); font-size: 14px; font-weight: 800; line-height: 1.2; }
+.qs .track > div { margin: 0 3px; font-family: var(--f-mono); font-size: 12px; font-weight: 500; color: var(--muted); padding: 10px 2px 8px; border-bottom: 1px solid var(--line); }
+.lane { border-bottom: 1px dashed var(--line); }
+.lane .track { padding-block: 10px; background: linear-gradient(90deg, color-mix(in srgb, var(--sea) 6%, transparent) 0 11.111%, transparent 11.111% 44.444%, color-mix(in srgb, var(--sea) 6%, transparent) 44.444% 88.889%, transparent 88.889% 100%); }
+.lane-name { padding: 12px 12px 12px 0; font-family: var(--f-display); font-size: 14px; font-weight: 800; }
+.it { margin: 0 3px; background: var(--sea-soft); padding: 8px 10px; font-size: 13px; line-height: 1.3; font-family: var(--f-display); font-weight: 500; border-radius: 3px; transition: opacity 0.25s, transform 0.25s; }
+.it b { font-weight: 700; display: block; }
+.it.ms { background: var(--sun-soft); }
+.goals .track > div { margin: 0 3px; padding: 12px 10px 0; font-size: 12.5px; line-height: 1.4; border-top: 2px solid var(--ink); display: flex; flex-direction: column; gap: 4px; transition: opacity 0.25s; }
+.goals .label { color: var(--sun-ink); font-size: 11px; }
+.rm[data-show] .track > [data-ph] { opacity: 0.18; }
+.rm[data-show="0"] .track > [data-ph="0"], .rm[data-show="1"] .track > [data-ph="1"], .rm[data-show="2"] .track > [data-ph="2"], .rm[data-show="3"] .track > [data-ph="3"] { opacity: 1; }
+.rm[data-show] .lane .track > [data-ph] { transform: scale(0.98); }
+.rm[data-show="0"] .lane [data-ph="0"], .rm[data-show="1"] .lane [data-ph="1"], .rm[data-show="2"] .lane [data-ph="2"], .rm[data-show="3"] .lane [data-ph="3"] { transform: none; }
+.rm-hint { display: none; margin-top: 8px; }
+.phase-notes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 22px; }
+.phase-notes > div { display: flex; flex-direction: column; gap: 6px; font-size: 15px; border-top: 2px solid var(--line); padding-top: 12px; transition: border-color 0.2s; }
+.phase-notes > div.on { border-color: var(--sun); }
+.phase-notes .label { color: var(--sea); }
+
+/* 11 · Marca */
+.rings-wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; align-items: center; }
+.rings { width: 100%; max-width: 420px; }
+.ring { position: relative; border-radius: 50%; aspect-ratio: 1 / 1; width: 100%; max-width: 100%; }
+.ring > .ring { position: absolute; width: 72%; left: 14%; top: 14%; }
+.ring > span { position: absolute; left: 50%; top: 4%; transform: translateX(-50%); text-align: center; font-family: var(--f-display); font-weight: 700; font-size: 12.5px; line-height: 1.3; width: 70%; }
+.r4 { background: color-mix(in srgb, var(--sun) 16%, var(--bg)); border: 1px solid var(--line); }
+.r4 > span { font-weight: 800; font-size: 14px; }
+.r3 { background: color-mix(in srgb, var(--sea) 18%, var(--bg)); }
+.r2 { background: color-mix(in srgb, var(--sea) 38%, var(--bg)); }
+.r1 { background: var(--sun); }
+.r1 > span { top: 50%; transform: translate(-50%, -50%); color: #10262E; font-weight: 800; font-size: 14px; }
+.ring-steps { list-style: none; margin: 0; padding: 0; }
+.ring-steps li { border-top: 1px solid var(--line); padding: 11px 0; display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 10px; font-size: 15.5px; }
+.ring-steps li i { width: 14px; height: 14px; border-radius: 50%; margin-top: 5px; }
+.dest { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.dest > div { background: var(--surface); border: 1px solid var(--line); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; font-size: 14px; }
+.dest .spots { font-family: var(--f-mono); font-size: 12px; color: var(--sea); line-height: 1.5; }
+.dest .home { background: var(--deep); color: var(--deep-fg); border-color: transparent; }
+.dest .home .spots { color: var(--hero-accent); }
+
+/* 12 · Equipo y siguiente */
+.roles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.role { background: var(--surface); border: 1px solid var(--line); padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; font-size: 15px; }
+.role .label { color: var(--sea); }
+.role.both { grid-column: 1 / -1; background: var(--sea-soft); border-color: transparent; }
+.role.both .label { color: var(--ink); }
+.next { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; }
+.next label { border-top: 1px solid var(--line); padding: 13px 0; display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 12px; align-items: start; font-size: 15.5px; cursor: pointer; }
+.next input { width: 16px; height: 16px; margin: 4px 0 0; accent-color: var(--sea); }
+.next input:checked + span { text-decoration: line-through; color: var(--muted); }
+.owner { font-family: var(--f-mono); font-size: 11px; padding: 3px 8px; background: var(--sea-soft); white-space: nowrap; }
+
+footer { margin-top: 64px; background: var(--deep); color: var(--deep-muted); }
+footer .wrap { padding-block: 24px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-family: var(--f-mono); font-size: 12px; }
+footer b { color: var(--deep-fg); font-family: var(--f-display); font-weight: 900; font-stretch: 125%; letter-spacing: 0.04em; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .body { margin-left: 0; }
+  .sec-head { grid-template-columns: 44px minmax(0, 1fr); }
+  .split, .rings-wrap { grid-template-columns: minmax(0, 1fr); }
+  .diffs, .flow, .side-ents { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dest, .engines, .acts, .criteria, .stackpick, .phase-notes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rm-hint { display: block; }
+}
+@media (max-width: 620px) {
+  body { font-size: 16px; }
+  .hero .wrap { padding-block: 28px 92px; }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .facts div { border-right: 0; padding-left: 0; padding-bottom: 12px; }
+  .value, .journey, .principles, .diffs, .next, .dest, .engines, .layers, .tiers, .formats, .criteria, .flow, .side-ents, .stackpick, .roles, .phase-notes { grid-template-columns: minmax(0, 1fr); }
+  .value .main { grid-row: auto; }
+  .journey > div + div { border-left: 0; border-top: 1px solid var(--line); }
+  .spec { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .spec > div:nth-child(3) { padding-left: 0; border-left: 0; }
+  .spec > div:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .tier { min-height: 0 !important; }
+  .cmp-row, .scale { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .scale > div:first-child { display: none; }
+  .legend-list li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .pt span { font-size: 11px; }
+  .vision { padding: 24px 20px; }
+  .entities { flex-direction: column; }
+  .rel { flex-direction: row; gap: 6px; padding: 4px 0; }
+  .rel::before { content: "↓"; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero h1 span { animation: rise 0.7s cubic-bezier(.2,.7,.2,1) both; }
+  .hero h1 span:nth-child(2) { animation-delay: 0.08s; }
+  .hero h1 span:nth-child(3) { animation-delay: 0.16s; }
+  @keyframes rise { from { transform: translateY(14px); } to { transform: none; } }
+  .bar.grow { animation: grow 0.9s cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes grow { from { transform: scaleX(0.35); } to { transform: none; } }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <span class="wordmark">EXPERIENCIAS<small>Nombre provisional</small></span>
+      <span class="label">Documento interno · Dani y Javi</span>
+    </div>
+    <h1><span>Viaja en grupo.</span><span>Conoce gente como tú.</span><span class="soft">Solo haz la maleta.</span></h1>
+    <p class="lede">Una plataforma de experiencias completas para vivir en grupo: alojamiento, actividad y comidas en un solo precio. Empezamos con el surf porque es lo que conocemos. El objetivo es cualquier experiencia que se disfrute en compañía.</p>
+    <dl class="facts">
+      <div><dt>Empezamos con</dt><dd>Surf en Europa</dd></div>
+      <div class="hl"><dt>Visión</dt><dd>Cualquier experiencia en grupo</dd></div>
+      <div><dt>Público</dt><dd>25–40 años, internacional</dd></div>
+      <div><dt>Modelo</dt><dd>Operador → marketplace</dd></div>
+    </dl>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
+    <path class="w2" d="M0,46 C180,18 320,76 520,50 C720,26 860,80 1060,52 C1240,30 1340,56 1440,40"/>
+    <path class="w1" d="M0,70 C200,42 340,96 560,72 C760,52 900,100 1100,74 C1260,56 1360,80 1440,62 L1440,100 L0,100 Z"/>
+  </svg>
+</header>
+
+<nav class="nav" id="nav" aria-label="Secciones">
+  <div class="wrap">
+  <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-list"><span class="cur" id="nav-cur"><span>00</span>Secciones</span><i aria-hidden="true">▾</i></button>
+  <ol id="nav-list">
+    <li class="nav-pill" id="nav-pill" aria-hidden="true"></li>
+    <li><a href="#idea"><span>01</span>Idea</a></li>
+    <li><a href="#vision"><span>02</span>Visión</a></li>
+    <li><a href="#mercado"><span>03</span>Mercado</a></li>
+    <li><a href="#propuesta"><span>04</span>Propuesta</a></li>
+    <li><a href="#social"><span>05</span>Social</a></li>
+    <li><a href="#producto"><span>06</span>Producto</a></li>
+    <li><a href="#proveedores"><span>07</span>Proveedores</a></li>
+    <li><a href="#negocio"><span>08</span>Negocio</a></li>
+    <li><a href="#tecnologia"><span>09</span>Tecnología</a></li>
+    <li><a href="#roadmap"><span>10</span>Roadmap</a></li>
+    <li><a href="#marca"><span>11</span>Marca</a></li>
+    <li><a href="#equipo"><span>12</span>Equipo</a></li>
+  </ol>
+  </div>
+</nav>
+
+<main>
+
+<section class="sec" id="idea">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">01</span><h2>La idea</h2><p class="kicker">El mismo viaje vale el doble cuando se entrega hecho y en grupo.</p></div>
+    <div class="body">
+      <div class="text">
+        <p>Cuando vamos a Sagres con amigos, juntamos las noches, las clases de surf, el material, el desayuno, alguna comida y unas clases de yoga. Comprándolo todo directamente al camp sale una semana por unos 500 € por persona.</p>
+        <p>Sabemos que grupos de desconocidos, muchos de ellos alemanes, pagan más de 1.000 € por una semana muy parecida. La diferencia de precio no está en el producto. Está en que alguien se lo da todo organizado y con un grupo hecho.</p>
+      </div>
+      <div class="compare" role="img" aria-label="Precio por persona para 7 noches: 500 euros nuestro grupo de amigos, más de 1.000 euros grupos internacionales">
+        <div class="cmp-row">
+          <div class="who">Nuestro grupo de amigos</div>
+          <div class="bar-track"><div class="bar grow" style="width: 50%">500 €</div></div>
+        </div>
+        <div class="cmp-row">
+          <div class="who">Grupos internacionales</div>
+          <div class="bar-track"><div class="bar high grow" style="width: 100%">1.000 € +</div></div>
+        </div>
+        <div class="scale"><div></div><div><span>0 €</span><span>250 €</span><span>500 €</span><span>750 €</span><span>1.000 €</span></div></div>
+      </div>
+      <div class="callout"><span class="label">Lo que vendemos</span>No tener que organizar nada, ir en grupo y conocer gente. La actividad y el alojamiento son el envoltorio. Por eso el modelo sirve para cualquier experiencia, no solo para el surf.</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="vision">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">02</span><h2>Más allá del surf</h2><p class="kicker">El surf es la puerta de entrada. La plataforma es para cualquier experiencia que se viva en compañía.</p></div>
+    <div class="body">
+      <div class="vision">
+        <span class="label">Visión</span>
+        <h3>Cualquier experiencia que se disfrute mejor acompañado.</h3>
+        <p>En las primeras fases nos centramos en el surf para hacerlo muy bien y ganar nombre. A partir de ahí abrimos a otras actividades: una semana de snow, una acampada en la montaña, un viaje de kite o una ruta de varios días. Lo que las une es el formato: experiencia completa, todo incluido y con gente.</p>
+      </div>
+      <div class="acts">
+        <div class="act now"><span class="ph">Fase 0–1</span><b>Surf</b><span class="d">Sagres primero; después, la costa atlántica.</span></div>
+        <div class="act"><span class="ph">Fase 2</span><b>Snow</b><span class="d">Cubre el invierno, cuando no hay surf.</span></div>
+        <div class="act"><span class="ph">Fase 2</span><b>Acampada en la montaña</b><span class="d">Refugios, vivac y rutas guiadas.</span></div>
+        <div class="act"><span class="ph">Fase 2</span><b>Kite y wingfoil</b><span class="d">Mismo público y destinos cercanos al surf.</span></div>
+        <div class="act"><span class="ph">Fase 3</span><b>Trekking</b><span class="d">Rutas de varios días con alojamiento.</span></div>
+        <div class="act"><span class="ph">Fase 3</span><b>Escalada</b><span class="d">Por niveles, con guía.</span></div>
+        <div class="act"><span class="ph">Fase 3</span><b>Buceo</b><span class="d">Cursos y salidas en grupo.</span></div>
+        <div class="act more"><span class="ph">Fase 3+</span><b>Lo que encaje</b><span class="d">Cualquier actividad que cumpla los criterios.</span></div>
+      </div>
+      <div class="stack">
+        <p class="sub">Para quién</p>
+        <div class="formats">
+          <div class="fmt main"><span class="label">Principal</span><b>Grupos</b><span>Amigos, empresas y viajeros solos que se suman a una salida. Es donde está la experiencia social.</span></div>
+          <div class="fmt"><span class="label">También</span><b>Parejas</b><span>Reservan juntas y comparten salida con el grupo.</span></div>
+          <div class="fmt"><span class="label">También</span><b>Solos</b><span>Se unen a un grupo abierto.</span></div>
+        </div>
+      </div>
+      <div class="stack">
+        <p class="sub">Qué tiene que cumplir una actividad para entrar</p>
+        <div class="criteria">
+          <div><h4>Se disfruta en grupo</h4><p>La gente sale del viaje conociendo a otros.</p></div>
+          <div><h4>Se puede empaquetar</h4><p>Dos noches o más, con alojamiento, actividad y comidas.</p></div>
+          <div><h4>Proveedor verificable</h4><p>Hay negocios locales que podemos probar.</p></div>
+          <div><h4>Suma temporada</h4><p>Mejor si llena meses en los que otras actividades flojean.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="mercado">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">03</span><h2>Dónde encajamos</h2><p class="kicker">Hay plataformas de alojamiento, de actividades sueltas y operadores de viajes en grupo. Nadie junta las tres cosas en un marketplace.</p></div>
+    <div class="body">
+      <div class="split">
+        <div class="map" role="img" aria-label="Mapa de competidores: de actividad suelta a viaje completo, y de reserva individual a pensado para grupos">
+          <span class="ax top">Pensado para grupos</span>
+          <span class="ax bottom">Reserva individual</span>
+          <span class="ax left">Actividad<br>suelta</span>
+          <span class="ax right">Viaje<br>completo</span>
+          <div class="pt" style="left: 14%; top: 72%"><i></i><span>GetYourGuide · Viator</span></div>
+          <div class="pt" style="left: 22%; top: 60%"><i></i><span>Airbnb Experiences</span></div>
+          <div class="pt flip" style="left: 86%; top: 74%"><i></i><span>BookSurfCamps · BookRetreats</span></div>
+          <div class="pt flip" style="left: 74%; top: 34%"><i></i><span>WeRoad · Flash Pack</span></div>
+          <div class="pt flip us" style="left: 88%; top: 16%"><i></i><span>Nosotros</span></div>
+        </div>
+        <ul class="legend-list">
+          <li><b>GetYourGuide · Viator</b><span>Actividades de un día. No incluyen alojamiento ni grupo.</span></li>
+          <li><b>BookSurfCamps</b><span>Catálogo de paquetes por proveedor, pensado para reservar en solitario. Sin capa social.</span></li>
+          <li><b>WeRoad · Flash Pack</b><span>Prueban que el viaje en grupo entre desconocidos funciona, pero diseñan y operan cada viaje ellos. No son un marketplace.</span></li>
+          <li class="us"><b>Nosotros</b><span>Experiencia completa, en grupo, con proveedores locales que publican su oferta y la combinan con otros.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="propuesta">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">04</span><h2>Qué ofrecemos</h2></div>
+    <div class="body">
+      <div class="value">
+        <div class="main">
+          <span class="label">Promesa central</span>
+          <h3>Viajar en grupo y conocer gente como tú.</h3>
+          <p>Cada salida junta a grupos de amigos, parejas y viajeros solos alrededor de la misma actividad.</p>
+          <p class="tag">“Come solo, leave with a crew.”</p>
+        </div>
+        <div class="side"><span class="label">Apoyo</span><h3>Cero organización</h3><p>Un precio cerrado con todo incluido. Eliges fecha, pagas y haces la maleta.</p></div>
+        <div class="side"><span class="label">Apoyo</span><h3>Experiencias auténticas</h3><p>Proveedores locales probados y verificados, lejos del turismo de masas.</p></div>
+      </div>
+      <div class="diffs">
+        <div><span class="k">Precio</span><h4>Todo incluido</h4><p>Una reserva y un pago. Sin sorpresas en destino.</p></div>
+        <div><span class="k">Grupo</span><h4>Pensado para grupos</h4><p>Precio por tramos, chat previo y, más adelante, pago dividido.</p></div>
+        <div class="star"><span class="k">Difícil de copiar</span><h4>Paquetes multiproveedor</h4><p>Un camp solo no puede vender surf, yoga, cena en el pueblo y traslado. Nosotros juntamos varios proveedores en un producto.</p></div>
+        <div><span class="k">Confianza</span><h4>Sello “verificado”</h4><p>Cada experiencia se prueba en un viaje real antes de recibirlo.</p></div>
+        <div><span class="k">Encaje</span><h4>Por nivel y edad</h4><p>Principiantes con principiantes. Con volumen, también por edad.</p></div>
+        <div><span class="k">Repetición</span><h4>Comunidad</h4><p>El grupo vuelve al año siguiente, a la misma u otra experiencia.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="social">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">05</span><h2>La capa social</h2><p class="kicker">Conocer gente es el motor emocional del producto.</p></div>
+    <div class="body">
+      <div class="text">
+        <p>Hay quien viaja para hacer amigos, quien busca gente con sus mismos planes y quien, por qué no, espera encontrar a alguien. No lo vamos a anunciar así, pero diseñamos todo para que esas conexiones pasen: grupos que se mezclan, contacto antes del viaje y una comunidad que sigue después.</p>
+      </div>
+      <div class="principles">
+        <div><h4>Grupos que crecen</h4><p>Amigos, parejas y viajeros solos comparten salida. Siempre hay gente nueva. Las empresas son la excepción y van en privado.</p></div>
+        <div><h4>Emparejamiento</h4><p>Al principio los une la actividad. Con volumen, agrupamos también por edad y nivel.</p></div>
+        <div><h4>Convivencia</h4><p>Código de conducta y opción de habitación solo para chicas o solo para chicos.</p></div>
+      </div>
+      <div class="journey">
+        <div><span class="stage"><i></i>Antes</span><ul><li>Chat del grupo al confirmar la reserva</li><li>Guía, checklist y plan de cada día</li></ul></div>
+        <div><span class="stage"><i></i>Durante</span><ul><li>Actividad con profesores o guías locales</li><li>Comidas y planes en grupo</li><li>Coordinador de referencia en destino</li></ul></div>
+        <div><span class="stage"><i></i>Después</span><ul><li>Fotos y vídeo del viaje para compartir</li><li>Referidos: trae a tu gente con descuento</li><li>Quedadas en ciudades</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="producto">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">06</span><h2>Primer producto: Sagres</h2><p class="kicker">Un destino que conocemos y un proveedor de confianza. Aquí validamos el modelo antes de crecer.</p></div>
+    <div class="body">
+      <div class="chips">
+        <span class="chip">Alojamiento</span><span class="chip">Clases de surf</span><span class="chip">Material</span><span class="chip">Desayuno</span>
+        <span class="chip off">Yoga · extra</span><span class="chip off">Cenas · extra</span><span class="chip off">Traslados · extra</span>
+      </div>
+      <div class="spec">
+        <div><span class="label">Formatos</span><span class="v">4–5 · 7 noches</span><small>Puentes y empresas, o vacaciones</small></div>
+        <div><span class="label">7 noches</span><span class="v">800–1.000 €</span><small>Por persona</small></div>
+        <div><span class="label">Clientes</span><span class="v">Amigos + empresas</span><small>Probamos los dos a la vez</small></div>
+        <div><span class="label">Pago</span><span class="v">100 %</span><small>Al reservar</small></div>
+      </div>
+      <div class="stack">
+        <span class="label muted">Precio por tramos · ejemplo 7 noches</span>
+        <div class="tiers">
+          <div class="tier"><span class="label">1–3 personas</span><span class="price">950 €</span></div>
+          <div class="tier"><span class="label">4–7 personas</span><span class="price">900 €</span></div>
+          <div class="tier"><span class="label">8–12 personas</span><span class="price">850 €</span></div>
+        </div>
+        <p class="note">El tramo depende de cuántas personas van en la misma reserva. El precio queda fijo al pagar y anima a venir con más gente.</p>
+      </div>
+      <div class="season">
+        <div class="unit-head"><b>Temporada</b><span class="note">El primer viaje lo coordinamos nosotros; después, el personal del camp.</span></div>
+        <div class="months" role="img" aria-label="Salidas de surf de marzo a octubre, temporada alta en julio y agosto; invierno cubierto por snow a partir de la fase 2">
+          <div class="w">E</div><div class="w">F</div><div class="s">M</div><div class="s">A</div><div class="s">M</div><div class="s">J</div><div class="h">J</div><div class="h">A</div><div class="s">S</div><div class="s">O</div><div class="w">N</div><div class="w">D</div>
+        </div>
+        <div class="windows">
+          <span class="wi" style="grid-column: 1 / 3">Snow</span>
+          <span style="grid-column: 3 / 5">Semana Santa</span>
+          <span style="grid-column: 5 / 7">Mayo–junio</span>
+          <span style="grid-column: 7 / 9">Temporada alta</span>
+          <span style="grid-column: 9 / 11">Sept.–oct.</span>
+          <span class="wi" style="grid-column: 11 / 13">Snow</span>
+        </div>
+        <div class="key">
+          <span><i style="background: color-mix(in srgb, var(--sea) 30%, var(--surface))"></i>Surf</span>
+          <span><i style="background: var(--sea)"></i>Temporada alta</span>
+          <span><i style="background: var(--sun-soft)"></i>Invierno: snow y surf en Marruecos (fase 2)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="proveedores">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">07</span><h2>Proveedores</h2><p class="kicker">El otro lado del marketplace. Si ellos ganan, la oferta crece sola.</p></div>
+    <div class="body">
+      <div class="engines">
+        <div><h4>Clientes</h4><p>Grupos ya formados y pagados, sin que inviertan en marketing.</p></div>
+        <div><h4>Temporada baja</h4><p>Llenamos sus huecos y sus fechas vacías.</p></div>
+        <div><h4>Paquetes conjuntos</h4><p>Se combinan con otros negocios de la zona y venden más.</p></div>
+        <div><h4>Gestión</h4><p>Reservas, cobros y grupos los lleva la plataforma.</p></div>
+      </div>
+      <div class="callout"><span class="label">Cómo los conseguimos</span>Contacto en remoto: email, llamada y videollamada. El primer viaje con cada proveedor nuevo hace de prueba. Si sale bien, recibe el sello “verificado” y entra en el catálogo de forma estable.</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="negocio">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">08</span><h2>Cómo ganamos dinero</h2><p class="kicker">Empezamos con margen por paquete y vamos sumando ingresos a medida que crece la plataforma.</p></div>
+    <div class="body">
+      <div class="layers" role="img" aria-label="Ingresos por fase: fase 1 margen; fase 2 margen y comisión; fase 3 margen, comisión, tarifa de servicio, herramientas y extras">
+        <div class="layer-col"><div class="blocks"><div class="blk m">Margen por paquete</div></div><div class="foot">Fase 1</div></div>
+        <div class="layer-col"><div class="blocks"><div class="blk m">Margen por paquete</div><div class="blk c">Comisión a proveedores</div></div><div class="foot">Fase 2</div></div>
+        <div class="layer-col"><div class="blocks"><div class="blk m">Margen por paquete</div><div class="blk c">Comisión a proveedores</div><div class="blk x">Tarifa de servicio</div><div class="blk x">Herramientas para proveedores</div><div class="blk x">Extras: seguro, traslados, fotos</div></div><div class="foot">Fase 3</div></div>
+      </div>
+      <div class="text">
+        <p><strong>Margen:</strong> compramos al proveedor a precio neto y vendemos el paquete completo. Es lo que hacemos en Sagres. <strong>Comisión:</strong> cuando un proveedor publica su propia experiencia, fija el precio y nos quedamos un porcentaje de cada reserva. Los dos modelos conviven: margen en lo que montamos nosotros y comisión en lo que publican otros.</p>
+      </div>
+      <div class="unit">
+        <div class="unit-head"><b>Una salida · 10 personas × 900 €</b><span class="note">Estimación, falta el coste real del camp</span></div>
+        <div class="stackbar" role="img" aria-label="De 9.000 euros: 5.000 proveedor, 800 captación y coordinación, 3.200 margen">
+          <div class="sb1" style="width: 55.6%">Proveedor 5.000 €</div>
+          <div class="sb2" style="width: 8.9%">800 €</div>
+          <div class="sb3" style="width: 35.5%">Margen 3.200 €</div>
+        </div>
+        <p class="note">800 € de captación y coordinación. Con 8–14 salidas en la primera temporada: unos 25.000–45.000 € de margen, suficiente para financiar la fase 2 sin inversión externa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="tecnologia">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">09</span><h2>Tecnología</h2><p class="kicker">Una web propia que en febrero vende Sagres y que, sin rehacerse, crece hasta marketplace.</p></div>
+    <div class="body">
+      <div class="text">
+        <p>La v1 la usamos solo nosotros como operadores, pero el modelo de datos ya contempla proveedores, paquetes con varios servicios y salidas con plazas. Así, cuando abramos a proveedores en la fase 2, añadimos permisos y pantallas, no rehacemos la base.</p>
+      </div>
+      <p class="sub">Modelo de datos v1</p>
+      <div class="entities">
+        <div class="ent"><b>Proveedor</b><ul><li class="k">id, nombre, tipo</li><li>verificado</li><li>stripe_account (fase 2)</li></ul></div>
+        <span class="rel">1:N</span>
+        <div class="ent"><b>Servicio</b><ul><li class="k">proveedor_id</li><li>tipo: alojamiento, clase, comida, traslado</li><li>coste_neto</li></ul></div>
+        <span class="rel">N:M</span>
+        <div class="ent core"><b>Experiencia</b><ul><li class="k">actividad, destino</li><li>noches, título (i18n)</li><li>servicios incluidos</li></ul></div>
+        <span class="rel">1:N</span>
+        <div class="ent"><b>Salida</b><ul><li class="k">experiencia_id</li><li>fecha_inicio, plazas</li><li>estado: abierta, completa</li></ul></div>
+        <span class="rel">1:N</span>
+        <div class="ent"><b>Reserva</b><ul><li class="k">salida_id, personas</li><li>tramo, importe</li><li>estado, stripe_session</li></ul></div>
+        <span class="rel">1:N</span>
+        <div class="ent"><b>Viajero</b><ul><li class="k">reserva_id</li><li>nombre, edad, nivel</li></ul></div>
+      </div>
+      <div class="side-ents">
+        <div class="ent"><b>TramoPrecio</b><ul><li class="k">experiencia_id</li><li>min, max, precio</li></ul></div>
+        <div class="ent"><b>SolicitudEmpresa</b><ul><li class="k">empresa, personas</li><li>fechas, presupuesto</li></ul></div>
+        <div class="ent"><b>Traducción</b><ul><li class="k">en · es · de</li><li>textos de experiencias y emails</li></ul></div>
+      </div>
+      <p class="sub">Flujo de reserva y pago</p>
+      <ol class="flow">
+        <li><b>Elegir salida</b>El viajero elige fecha y número de personas.</li>
+        <li><b>Precio en servidor</b>El tramo y el importe se calculan en el servidor, nunca en el cliente.</li>
+        <li><b>Bloqueo de plazas</b>Se reservan las plazas unos 30 minutos y se crea una Checkout Session con la misma caducidad.</li>
+        <li><b>Pago</b>El viajero paga en Stripe Checkout. No tocamos datos de tarjeta.</li>
+        <li><b>Webhook</b><code>checkout.session.completed</code>, procesado de forma idempotente: reserva pagada y plazas confirmadas.</li>
+        <li class="alt"><b>Liberar plazas</b><code>checkout.session.expired</code> devuelve las plazas a la salida.</li>
+      </ol>
+      <p class="note">Tras el pago: email de confirmación en el idioma del viajero y acceso al chat del grupo. El bloqueo temporal evita vender la misma plaza dos veces.</p>
+      <p class="sub">Evolución por fase</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Fase</th><th>Producto</th><th>Pagos</th></tr></thead>
+          <tbody>
+            <tr><td>0 · Validar</td><td>Catálogo, reserva, formulario de empresas, panel de administración, i18n en/es/de</td><td>Stripe Checkout. Todo se cobra en nuestra cuenta</td></tr>
+            <tr><td>1 · Operadores</td><td>Perfiles de viajero, valoraciones, chat de grupo, pago dividido</td><td>Un enlace de pago por viajero dentro de la misma reserva</td></tr>
+            <tr><td>2 · Invitación</td><td>Panel de proveedor, constructor de paquetes multiproveedor, calendario de disponibilidad, nuevas actividades</td><td>Stripe Connect: un cobro al viajero y transferencias separadas a cada proveedor, reteniendo nuestra parte</td></tr>
+            <tr><td>3 · Abierto</td><td>Alta self-service de proveedores, búsqueda y recomendación, emparejamiento, app móvil</td><td>Verificación de proveedores con Connect, tarifa de servicio y extras</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sub">Stack candidato <span class="note">· a decidir juntos</span></p>
+      <div class="stackpick">
+        <div><span class="label">Aplicación</span><b>TypeScript full-stack</b><span>Un solo lenguaje en front y back. Por ejemplo, Next.js con renderizado en servidor para el SEO de las fichas.</span></div>
+        <div><span class="label">Datos</span><b>PostgreSQL</b><span>Relacional: plazas, reservas y pagos necesitan transacciones.</span></div>
+        <div><span class="label">Pagos</span><b>Stripe</b><span>Checkout ahora, Connect en la fase 2, sin cambiar de proveedor.</span></div>
+        <div><span class="label">Hosting</span><b>Gestionado, plan gratuito</b><span>Coste casi cero hasta tener tráfico real.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="roadmap">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">10</span><h2>Roadmap</h2><p class="kicker">Por trimestres desde que arrancamos. Cada fase empieza cuando la anterior cumple su objetivo, no antes.</p></div>
+    <div class="rm-tools" role="group" aria-label="Filtrar por fase">
+      <span class="note">Ver fase:</span>
+      <button class="ph-btn" type="button" data-f="" aria-pressed="true">Todas</button>
+      <button class="ph-btn" type="button" data-f="0" aria-pressed="false">0 · Validar</button>
+      <button class="ph-btn" type="button" data-f="1" aria-pressed="false">1 · Operadores</button>
+      <button class="ph-btn" type="button" data-f="2" aria-pressed="false">2 · Por invitación</button>
+      <button class="ph-btn" type="button" data-f="3" aria-pressed="false">3 · Abierto</button>
+    </div>
+    <div class="rm-wrap" tabindex="0" aria-label="Roadmap por trimestres">
+      <div class="rm" id="rm">
+        <div class="rm-row phases"><div></div><div class="track">
+          <div data-ph="0" style="grid-column: 1 / 2"><span class="label">Fase 0</span><b>Validar y construir</b></div>
+          <div data-ph="1" style="grid-column: 2 / 5"><span class="label">Fase 1</span><b>Operadores de surf</b></div>
+          <div data-ph="2" style="grid-column: 5 / 9"><span class="label">Fase 2</span><b>Marketplace por invitación y nuevas actividades</b></div>
+          <div data-ph="3" style="grid-column: 9 / 10"><span class="label">Fase 3</span><b>Cualquier experiencia</b></div>
+        </div></div>
+        <div class="rm-row qs"><div></div><div class="track">
+          <div>Q1</div><div>Q2</div><div>Q3</div><div>Q4</div><div>Q5</div><div>Q6</div><div>Q7</div><div>Q8</div><div>Q9 +</div>
+        </div></div>
+
+        <div class="rm-row lane"><div class="lane-name">Experiencias</div><div class="track">
+          <div class="it" data-ph="0" style="grid-column: 1 / 2"><b>Paquete Sagres</b>Corto y 7 noches</div>
+          <div class="it ms" data-ph="1" style="grid-column: 2 / 5"><b>Salidas en Sagres</b>Semana Santa a octubre</div>
+          <div class="it" data-ph="1" style="grid-column: 3 / 5">2º y 3º destino de surf</div>
+          <div class="it" data-ph="2" style="grid-column: 5 / 7"><b>Snow</b>Primera actividad fuera del surf</div>
+          <div class="it" data-ph="2" style="grid-column: 7 / 9"><b>Montaña y kite</b>Acampada, rutas y viento</div>
+          <div class="it ms" data-ph="3" style="grid-column: 9 / 10"><b>Abierto</b>Cualquier experiencia en grupo</div>
+        </div></div>
+
+        <div class="rm-row lane"><div class="lane-name">Proveedores</div><div class="track">
+          <div class="it" data-ph="0" style="grid-column: 1 / 2">Acuerdo con el camp de Sagres</div>
+          <div class="it" data-ph="1" style="grid-column: 2 / 5">3–5 proveedores de surf, verificados en su primer viaje</div>
+          <div class="it" data-ph="2" style="grid-column: 5 / 9"><b>Proveedores invitados publican</b>Surf, snow y montaña. Paquetes propios y combinados</div>
+          <div class="it" data-ph="3" style="grid-column: 9 / 10">Alta abierta con sello</div>
+        </div></div>
+
+        <div class="rm-row lane"><div class="lane-name">Marca</div><div class="track">
+          <div class="it" data-ph="0" style="grid-column: 1 / 2">Nombre y redes</div>
+          <div class="it" data-ph="1" style="grid-column: 2 / 5">Contenido de cada viaje y referidos</div>
+          <div class="it" data-ph="1" style="grid-column: 3 / 5">Primeros embajadores</div>
+          <div class="it" data-ph="2" style="grid-column: 5 / 9">Pasamos de “viajes de surf” a “experiencias en grupo”. Quedadas y guías SEO</div>
+          <div class="it" data-ph="3" style="grid-column: 9 / 10">Membresía</div>
+        </div></div>
+
+        <div class="rm-row lane"><div class="lane-name">Tecnología</div><div class="track">
+          <div class="it ms" data-ph="0" style="grid-column: 1 / 2"><b>Web v1</b>Reserva, pago, empresas, panel</div>
+          <div class="it" data-ph="1" style="grid-column: 2 / 5">Chat de grupo, perfiles, valoraciones, pago dividido</div>
+          <div class="it" data-ph="2" style="grid-column: 5 / 7"><b>Stripe Connect</b>Panel y constructor de paquetes</div>
+          <div class="it" data-ph="2" style="grid-column: 7 / 9">Calendario de disponibilidad y emparejamiento</div>
+          <div class="it" data-ph="3" style="grid-column: 9 / 10">App y alta self-service</div>
+        </div></div>
+
+        <div class="rm-row lane"><div class="lane-name">Negocio</div><div class="track">
+          <div class="it" data-ph="0" style="grid-column: 1 / 2">¿Amigos o empresas?</div>
+          <div class="it" data-ph="1" style="grid-column: 2 / 5">Margen por paquete y primeras empresas</div>
+          <div class="it" data-ph="2" style="grid-column: 5 / 9">Margen + comisión. Ingresos todo el año. Primera contratación</div>
+          <div class="it" data-ph="3" style="grid-column: 9 / 10">Tarifa de servicio y extras</div>
+        </div></div>
+
+        <div class="rm-row goals"><div class="lane-name">Objetivo</div><div class="track">
+          <div data-ph="0" style="grid-column: 1 / 2"><span class="label">Para pasar</span>Primeras reservas pagadas</div>
+          <div data-ph="1" style="grid-column: 2 / 5"><span class="label">Para pasar</span>8–14 salidas, valoración de 4,7 o más y 1 de cada 5 reservas por repetición o referido</div>
+          <div data-ph="2" style="grid-column: 5 / 9"><span class="label">Para pasar</span>10+ proveedores verificados, 2+ actividades además del surf e ingresos todo el año</div>
+          <div data-ph="3" style="grid-column: 9 / 10"><span class="label">Meta</span>Referente en experiencias en grupo</div>
+        </div></div>
+      </div>
+    </div>
+    <p class="rm-hint note">Desliza para ver todos los trimestres.</p>
+    <div class="phase-notes" id="phase-notes">
+      <div data-n="0"><span class="label">Fase 0</span><p>Construimos la web v1, cerramos Sagres y vendemos las primeras plazas. Decidimos si tiran más los grupos de amigos o las empresas.</p></div>
+      <div data-n="1"><span class="label">Fase 1</span><p>Operamos salidas de surf. Aprendemos qué funciona, generamos contenido y valoraciones, y sumamos dos o tres proveedores más.</p></div>
+      <div data-n="2"><span class="label">Fase 2</span><p>Abrimos a proveedores invitados y salimos del surf: snow para el invierno, después montaña y kite. La marca pasa a ser de experiencias.</p></div>
+      <div data-n="3"><span class="label">Fase 3</span><p>Cualquier proveedor que cumpla los criterios puede publicar. Cualquier experiencia en grupo, en pareja o para sumarse solo.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="marca">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">11</span><h2>Marca y expansión</h2><p class="kicker">Dominar un nicho pequeño y abrirse después, sin cambiar de marca.</p></div>
+    <div class="body">
+      <div class="rings-wrap">
+        <div class="rings" role="img" aria-label="Expansión en círculos: Sagres, surf en Europa, outdoor, cualquier experiencia en grupo">
+          <div class="ring r4"><span>Cualquier experiencia en grupo</span>
+            <div class="ring r3"><span>Snow, montaña, kite</span>
+              <div class="ring r2"><span>Surf en Europa</span>
+                <div class="ring r1"><span>Sagres</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="text"><p>Por eso el nombre será genérico y sin la palabra surf. El tono, aventurero y social: como ese amigo que lo organiza todo y siempre conoce a alguien.</p></div>
+          <ul class="ring-steps">
+            <li><i style="background: var(--sun)"></i><span><strong>Sagres.</strong> Producto probado con un proveedor de confianza.</span></li>
+            <li><i style="background: color-mix(in srgb, var(--sea) 38%, var(--bg))"></i><span><strong>Surf en Europa.</strong> La referencia en viajes de surf en grupo.</span></li>
+            <li><i style="background: color-mix(in srgb, var(--sea) 18%, var(--bg))"></i><span><strong>Snow, montaña, kite.</strong> Ingresos todo el año y el mismo público.</span></li>
+            <li><i style="background: color-mix(in srgb, var(--sun) 16%, var(--bg)); border: 1px solid var(--line)"></i><span><strong>Cualquier experiencia en grupo.</strong> Marketplace abierto con sello de calidad.</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="engines">
+        <div><h4>Redes</h4><p>Vídeo y fotos de cada viaje, compartidos por los propios viajeros.</p></div>
+        <div><h4>Embajadores</h4><p>Profesores, guías, creadores y antiguos viajeros con código propio.</p></div>
+        <div><h4>Quedadas</h4><p>Eventos en ciudades para que la comunidad siga viva entre viajes.</p></div>
+        <div><h4>Guías y SEO</h4><p>Contenido sobre destinos y actividades que posiciona en Google.</p></div>
+      </div>
+      <p class="sub">Surf: dónde crecemos primero</p>
+      <div class="dest">
+        <div class="home"><span class="spots">Sagres · Ericeira · Peniche</span><h4>Portugal</h4><span>Punto de partida, mucha oferta.</span></div>
+        <div><span class="spots">Canarias · Cantabria · Asturias · País Vasco</span><h4>España</h4><span>Canarias, todo el año.</span></div>
+        <div><span class="spots">Hossegor · Biarritz</span><h4>Francia</h4><span>Olas top, público con poder adquisitivo.</span></div>
+        <div><span class="spots">Taghazout</span><h4>Marruecos</h4><span>Olas en invierno, buen precio.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="equipo">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">12</span><h2>Cómo trabajamos y siguiente</h2></div>
+    <div class="body">
+      <div class="roles">
+        <div class="role"><span class="label">Dani · CTO</span><h3>Tecnología y producto</h3><p>Plataforma, reservas y pagos, datos y crecimiento online.</p></div>
+        <div class="role"><span class="label">Javi · CMO</span><h3>Oferta y operación</h3><p>Relación con proveedores, diseño de paquetes y calidad en destino.</p></div>
+        <div class="role both"><span class="label">Los dos</span><p>Cada uno lleva su área, pero opinamos y decidimos juntos sobre todo: producto, precios, marca, tecnología y prioridades.</p></div>
+      </div>
+      <p class="sub">Para arrancar la fase 0</p>
+      <div class="next">
+        <label><input type="checkbox" id="t1"><span>Costes reales del camp por persona y noche, en los dos formatos</span></label>
+        <label><input type="checkbox" id="t2"><span>Fechas de salida y liberación de plazas</span></label>
+        <label><input type="checkbox" id="t3"><span>Cerrar stack y modelo de datos de la web v1</span></label>
+        <label><input type="checkbox" id="t4"><span>Web v1: catálogo, reserva y pago, empresas, panel, en/es/de</span></label>
+        <label><input type="checkbox" id="t5"><span>Política de cancelación</span></label>
+        <label><input type="checkbox" id="t6"><span>Nombre y marca</span></label>
+        <label><input type="checkbox" id="t7"><span>Lista de 10–20 empresas para el primer contacto</span></label>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><b>EXPERIENCIAS</b> &nbsp;Nombre provisional</span>
+    <span>Documento interno · Dani y Javi</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Filtro del roadmap por fase
+  var rm = document.getElementById('rm');
+  var notes = document.querySelectorAll('#phase-notes > div');
+  var btns = document.querySelectorAll('.ph-btn');
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = b.getAttribute('data-f');
+      if (f) rm.setAttribute('data-show', f); else rm.removeAttribute('data-show');
+      btns.forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+      notes.forEach(function (n) { n.classList.toggle('on', n.getAttribute('data-n') === f); });
+    });
+  });
+
+  // Sección activa en la navegación
+  var nav = document.getElementById('nav');
+  var toggle = document.getElementById('nav-toggle');
+  var cur = document.getElementById('nav-cur');
+  function setOpen(open) { nav.classList.toggle('open', open); toggle.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+  toggle.addEventListener('click', function () { setOpen(!nav.classList.contains('open')); });
+
+  var links = {};
+  document.querySelectorAll('.nav a').forEach(function (a) {
+    links[a.getAttribute('href').slice(1)] = a;
+    a.addEventListener('click', function () { setOpen(false); });
+  });
+  // Píldora que se desliza hasta la sección activa
+  var pill = document.getElementById('nav-pill');
+  var active = null;
+  function movePill() {
+    if (!active || !active.offsetWidth) { pill.style.opacity = '0'; return; }
+    pill.style.width = active.offsetWidth + 'px';
+    pill.style.height = active.offsetHeight + 'px';
+    pill.style.transform = 'translate(' + active.offsetLeft + 'px,' + active.offsetTop + 'px)';
+    pill.style.opacity = '1';
+  }
+  window.addEventListener('resize', movePill);
+
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      Object.keys(links).forEach(function (k) { links[k].classList.toggle('on', k === e.target.id); });
+      var a = links[e.target.id];
+      if (a) { cur.innerHTML = a.innerHTML; active = a; movePill(); }
+    });
+  }, { rootMargin: '-35% 0px -60% 0px' });
+  document.querySelectorAll('main .sec').forEach(function (s) { io.observe(s); });
+})();
+</script>
