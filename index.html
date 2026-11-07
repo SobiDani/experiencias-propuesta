@@ -53,7 +53,7 @@ body { background: var(--bg); color: var(--ink); font-family: var(--f-body); fon
 h1, h2, h3, h4 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.1; }
 h2 { font-size: clamp(28px, 4.2vw, 40px); font-weight: 800; font-stretch: 112%; letter-spacing: -0.01em; }
 h3 { font-size: 19px; font-weight: 700; font-stretch: 105%; }
-h4 { font-size: 16px; font-weight: 700; }
+h4, .h4 { font-size: 16px; font-weight: 700; font-stretch: 100%; }
 p { margin: 0; }
 strong { font-weight: 600; }
 code { font-family: var(--f-mono); font-size: 0.86em; background: var(--sea-soft); padding: 1px 5px; border-radius: 3px; }
@@ -503,10 +503,10 @@ footer b { color: var(--deep-fg); font-family: var(--f-display); font-weight: 90
       <div class="stack">
         <p class="sub">Qué tiene que cumplir una actividad para entrar</p>
         <div class="criteria">
-          <div><h4>Se disfruta en grupo</h4><p>La gente sale del viaje conociendo a otros.</p></div>
-          <div><h4>Se puede empaquetar</h4><p>Dos noches o más, con alojamiento, actividad y comidas.</p></div>
-          <div><h4>Proveedor verificable</h4><p>Hay negocios locales que podemos probar.</p></div>
-          <div><h4>Suma temporada</h4><p>Mejor si llena meses en los que otras actividades flojean.</p></div>
+          <div><h3 class="h4">Se disfruta en grupo</h3><p>La gente sale del viaje conociendo a otros.</p></div>
+          <div><h3 class="h4">Se puede empaquetar</h3><p>Dos noches o más, con alojamiento, actividad y comidas.</p></div>
+          <div><h3 class="h4">Proveedor verificable</h3><p>Hay negocios locales que podemos probar.</p></div>
+          <div><h3 class="h4">Suma temporada</h3><p>Mejor si llena meses en los que otras actividades flojean.</p></div>
         </div>
       </div>
     </div>
@@ -555,12 +555,12 @@ footer b { color: var(--deep-fg); font-family: var(--f-display); font-weight: 90
         <div class="side"><span class="label">Apoyo</span><h3>Experiencias auténticas</h3><p>Proveedores locales probados y verificados, lejos del turismo de masas.</p></div>
       </div>
       <div class="diffs">
-        <div><span class="k">Precio</span><h4>Todo incluido</h4><p>Una reserva y un pago. Sin sorpresas en destino.</p></div>
-        <div><span class="k">Grupo</span><h4>Pensado para grupos</h4><p>Precio por tramos, chat previo y, más adelante, pago dividido.</p></div>
-        <div class="star"><span class="k">Difícil de copiar</span><h4>Paquetes multiproveedor</h4><p>Un camp solo no puede vender surf, yoga, cena en el pueblo y traslado. Nosotros juntamos varios proveedores en un producto.</p></div>
-        <div><span class="k">Confianza</span><h4>Sello “verificado”</h4><p>Cada experiencia se prueba en un viaje real antes de recibirlo.</p></div>
-        <div><span class="k">Encaje</span><h4>Por nivel y edad</h4><p>Principiantes con principiantes. Con volumen, también por edad.</p></div>
-        <div><span class="k">Repetición</span><h4>Comunidad</h4><p>El grupo vuelve al año siguiente, a la misma u otra experiencia.</p></div>
+        <div><span class="k">Precio</span><h3 class="h4">Todo incluido</h3><p>Una reserva y un pago. Sin sorpresas en destino.</p></div>
+        <div><span class="k">Grupo</span><h3 class="h4">Pensado para grupos</h3><p>Precio por tramos, chat previo y, más adelante, pago dividido.</p></div>
+        <div class="star"><span class="k">Difícil de copiar</span><h3 class="h4">Paquetes multiproveedor</h3><p>Un camp solo no puede vender surf, yoga, cena en el pueblo y traslado. Nosotros juntamos varios proveedores en un producto.</p></div>
+        <div><span class="k">Confianza</span><h3 class="h4">Sello “verificado”</h3><p>Cada experiencia se prueba en un viaje real antes de recibirlo.</p></div>
+        <div><span class="k">Encaje</span><h3 class="h4">Por nivel y edad</h3><p>Principiantes con principiantes. Con volumen, también por edad.</p></div>
+        <div><span class="k">Repetición</span><h3 class="h4">Comunidad</h3><p>El grupo vuelve al año siguiente, a la misma u otra experiencia.</p></div>
       </div>
     </div>
   </div>
@@ -574,9 +574,9 @@ footer b { color: var(--deep-fg); font-family: var(--f-display); font-weight: 90
         <p>Hay quien viaja para hacer amigos, quien busca gente con sus mismos planes y quien, por qué no, espera encontrar a alguien. No lo vamos a anunciar así, pero diseñamos todo para que esas conexiones pasen: grupos que se mezclan, contacto antes del viaje y una comunidad que sigue después.</p>
       </div>
       <div class="principles">
-        <div><h4>Grupos que crecen</h4><p>Amigos, parejas y viajeros solos comparten salida. Siempre hay gente nueva. Las empresas son la excepción y van en privado.</p></div>
-        <div><h4>Emparejamiento</h4><p>Al principio los une la actividad. Con volumen, agrupamos también por edad y nivel.</p></div>
-        <div><h4>Convivencia</h4><p>Código de conducta y opción de habitación solo para chicas o solo para chicos.</p></div>
+        <div><h3 class="h4">Grupos que crecen</h3><p>Amigos, parejas y viajeros solos comparten salida. Siempre hay gente nueva. Las empresas son la excepción y van en privado.</p></div>
+        <div><h3 class="h4">Emparejamiento</h3><p>Al principio los une la actividad. Con volumen, agrupamos también por edad y nivel.</p></div>
+        <div><h3 class="h4">Convivencia</h3><p>Código de conducta y opción de habitación solo para chicas o solo para chicos.</p></div>
       </div>
       <div class="journey">
         <div><span class="stage"><i></i>Antes</span><ul><li>Chat del grupo al confirmar la reserva</li><li>Guía, checklist y plan de cada día</li></ul></div>
@@ -638,10 +638,10 @@ footer b { color: var(--deep-fg); font-family: var(--f-display); font-weight: 90
     <div class="sec-head"><span class="num">07</span><h2>Proveedores</h2><p class="kicker">El otro lado del marketplace. Si ellos ganan, la oferta crece sola.</p></div>
     <div class="body">
       <div class="engines">
-        <div><h4>Clientes</h4><p>Grupos ya formados y pagados, sin que inviertan en marketing.</p></div>
-        <div><h4>Temporada baja</h4><p>Llenamos sus huecos y sus fechas vacías.</p></div>
-        <div><h4>Paquetes conjuntos</h4><p>Se combinan con otros negocios de la zona y venden más.</p></div>
-        <div><h4>Gestión</h4><p>Reservas, cobros y grupos los lleva la plataforma.</p></div>
+        <div><h3 class="h4">Clientes</h3><p>Grupos ya formados y pagados, sin que inviertan en marketing.</p></div>
+        <div><h3 class="h4">Temporada baja</h3><p>Llenamos sus huecos y sus fechas vacías.</p></div>
+        <div><h3 class="h4">Paquetes conjuntos</h3><p>Se combinan con otros negocios de la zona y venden más.</p></div>
+        <div><h3 class="h4">Gestión</h3><p>Reservas, cobros y grupos los lleva la plataforma.</p></div>
       </div>
       <div class="callout"><span class="label">Cómo los conseguimos</span>Contacto en remoto: email, llamada y videollamada. El primer viaje con cada proveedor nuevo hace de prueba. Si sale bien, recibe el sello “verificado” y entra en el catálogo de forma estable.</div>
     </div>
@@ -837,17 +837,17 @@ footer b { color: var(--deep-fg); font-family: var(--f-display); font-weight: 90
         </div>
       </div>
       <div class="engines">
-        <div><h4>Redes</h4><p>Vídeo y fotos de cada viaje, compartidos por los propios viajeros.</p></div>
-        <div><h4>Embajadores</h4><p>Profesores, guías, creadores y antiguos viajeros con código propio.</p></div>
-        <div><h4>Quedadas</h4><p>Eventos en ciudades para que la comunidad siga viva entre viajes.</p></div>
-        <div><h4>Guías y SEO</h4><p>Contenido sobre destinos y actividades que posiciona en Google.</p></div>
+        <div><h3 class="h4">Redes</h3><p>Vídeo y fotos de cada viaje, compartidos por los propios viajeros.</p></div>
+        <div><h3 class="h4">Embajadores</h3><p>Profesores, guías, creadores y antiguos viajeros con código propio.</p></div>
+        <div><h3 class="h4">Quedadas</h3><p>Eventos en ciudades para que la comunidad siga viva entre viajes.</p></div>
+        <div><h3 class="h4">Guías y SEO</h3><p>Contenido sobre destinos y actividades que posiciona en Google.</p></div>
       </div>
       <p class="sub">Surf: dónde crecemos primero</p>
       <div class="dest">
-        <div class="home"><span class="spots">Sagres · Ericeira · Peniche</span><h4>Portugal</h4><span>Punto de partida, mucha oferta.</span></div>
-        <div><span class="spots">Canarias · Cantabria · Asturias · País Vasco</span><h4>España</h4><span>Canarias, todo el año.</span></div>
-        <div><span class="spots">Hossegor · Biarritz</span><h4>Francia</h4><span>Olas top, público con poder adquisitivo.</span></div>
-        <div><span class="spots">Taghazout</span><h4>Marruecos</h4><span>Olas en invierno, buen precio.</span></div>
+        <div class="home"><span class="spots">Sagres · Ericeira · Peniche</span><h3 class="h4">Portugal</h3><span>Punto de partida, mucha oferta.</span></div>
+        <div><span class="spots">Canarias · Cantabria · Asturias · País Vasco</span><h3 class="h4">España</h3><span>Canarias, todo el año.</span></div>
+        <div><span class="spots">Hossegor · Biarritz</span><h3 class="h4">Francia</h3><span>Olas top, público con poder adquisitivo.</span></div>
+        <div><span class="spots">Taghazout</span><h3 class="h4">Marruecos</h3><span>Olas en invierno, buen precio.</span></div>
       </div>
     </div>
   </div>
